@@ -1,32 +1,6 @@
 {
   "news": [
     {
-      "id": "cdd4",
-      "title": "hii",
-      "description": "dfghjklyuio",
-      "author": "bhavani",
-      "category": "breaking news",
-      "date": "28/1/2026, 5:01:50 pm"
-    },
-    {
-      "id": "9844",
-      "title": "hiii",
-      "description": "how are you",
-      "author": "bhavani",
-      "category": "breaking news",
-      "date": "28/1/2026, 8:35:26 pm"
-    },
-    {
-      "id": "9bc6",
-      "title": "react js",
-      "description": "new versions released"
-    },
-    {
-      "id": "1566",
-      "title": "react js",
-      "description": "new versions released"
-    },
-    {
       "id": "e584",
       "title": "react js",
       "description": "new versions released"
@@ -43,6 +17,29 @@
       "author": "dfghjkl",
       "category": "hiii",
       "date": "30/1/2026, 12:12:40 pm"
+    },
+    {
+      "id": "3342",
+      "title": "react js",
+      "description": "new versions released"
+    },
+    {
+      "id": "3367",
+      "title": "react js",
+      "description": "new versions released"
+    },
+    {
+      "id": "9456",
+      "title": "react js",
+      "description": "new versions released"
+    },
+    {
+      "id": "5f92",
+      "title": "fghjkl",
+      "description": "asdfghjkl",
+      "author": "wertyuio",
+      "category": "dfgjkl",
+      "date": "31/1/2026, 1:53:59 am"
     }
   ]
 }

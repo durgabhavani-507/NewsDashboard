@@ -15,7 +15,7 @@ html,
 body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 body {
@@ -163,7 +163,7 @@ a {
 .landing-banner {
     width: 100vw;
     height: calc(100vh - 70px);
-    overflow: hidden;
+    /* overflow: hidden; */
     background: #000;
 }
 
@@ -646,6 +646,21 @@ main.main-content.full {
     z-index: 999;
 }
 
+
+/* .sidebar-overlay {
+    pointer-events: auto;
+} */
+
+
+/* 🔑 when sidebar is closed, overlay must not block clicks */
+
+
+/* 
+.sidebar-overlay.hidden {
+    pointer-events: none;
+    opacity: 0;
+} */
+
 .main-content.with-sidebar {
     margin-left: var(--sidebar-width);
     padding: 30px;
@@ -905,7 +920,7 @@ main.main-content.full {
     border-right: 1px solid #1f2937;
     transition: width 0.3s ease;
     z-index: 900;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 
@@ -1323,7 +1338,7 @@ main.main-content.full {
 /* ================= DASHBOARD CARD (GLOBAL) ================= */
 
 .dashboard-card {
-    position: relative;
+    /* position: relative; */
     /* 🔑 REQUIRED */
     background: linear-gradient(160deg, #020617, #020617);
     border-radius: 14px;
@@ -1334,6 +1349,12 @@ main.main-content.full {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     overflow: visible;
     /* 🔑 allow clicks */
+    /* z-index: 1; */
+}
+
+.dashboard-layout,
+.sidebar,
+.header {
     z-index: 1;
 }
 
@@ -1345,10 +1366,12 @@ main.main-content.full {
 
 /* 🚫 prevent invisible overlays blocking buttons */
 
+
+/* 
 .dashboard-card::before,
 .dashboard-card::after {
     pointer-events: none;
-}
+} */
 
 
 /* ================= CARD CONTENT ================= */
@@ -1461,7 +1484,7 @@ main.main-content.full {
 .news-card,
 .btn {
     position: relative;
-    z-index: 1;
+    z-index: 10;
 }
 
 .btn {
@@ -1556,3 +1579,457 @@ main.main-content.full {
 
 
 /* this have dupicate code there you find and replace give locations */
+
+
+/* 
+.main-content.with-sidebar {
+    position: relative;
+    z-index: 5;
+} */
+
+
+/* ================= CLICK SAFETY FIX ================= */
+
+.btn,
+.btn-group,
+.dashboard-card button {
+    pointer-events: auto !important;
+    z-index: 20;
+    position: relative;
+}
+
+
+/* prevent invisible overlays blocking clicks */
+
+.dashboard-card::before,
+.dashboard-card::after {
+    pointer-events: none !important;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    z-index: 100000;
+}
+
+
+/* ================= FINAL CLICK FIX (DO NOT REMOVE) ================= */
+
+
+/* Ensure dashboard content is ABOVE sidebar */
+
+.main-content.with-sidebar {
+    position: relative;
+    z-index: 2000;
+}
+
+
+/* Ensure cards are clickable */
+
+.dashboard-card {
+    position: relative;
+    z-index: 3000;
+    pointer-events: auto;
+}
+
+
+/* Ensure button group is clickable */
+
+.btn-group,
+.btn {
+    position: relative;
+    z-index: 4000;
+    pointer-events: auto;
+}
+
+
+/* Sidebar should stay BELOW content */
+
+.dashboard-sidebar {
+    z-index: 1000;
+}
+
+
+/* Remove any invisible overlays blocking clicks */
+
+.dashboard-card::before,
+.dashboard-card::after {
+    content: none !important;
+    pointer-events: none !important;
+}
+
+
+/* this is my index.css file */
+
+.news-details {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #111;
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+
+/* ===== EDIT MODAL OVERLAY ===== */
+
+.edit-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+
+/* ===== MODAL BOX ===== */
+
+.edit-modal {
+    width: 420px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px 26px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: scaleIn 0.25s ease;
+}
+
+
+/* ===== ANIMATION ===== */
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* ===== TITLE ===== */
+
+.edit-modal h3 {
+    margin-bottom: 18px;
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    color: #111;
+}
+
+
+/* ===== INPUTS ===== */
+
+.edit-modal input,
+.edit-modal textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    outline: none;
+}
+
+.edit-modal textarea {
+    resize: none;
+}
+
+
+/* ===== INPUT FOCUS ===== */
+
+.edit-modal input:focus,
+.edit-modal textarea:focus {
+    border-color: #4caf50;
+}
+
+
+/* ===== BUTTON GROUP ===== */
+
+.edit-modal .btn-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+
+/* ===== BUTTONS ===== */
+
+.edit-modal .btn {
+    flex: 1;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+
+/* SAVE */
+
+.edit-modal .btn.primary {
+    background: #28c76f;
+    color: #fff;
+}
+
+
+/* CANCEL */
+
+.edit-modal .btn.delete {
+    background: #ea5455;
+    color: #fff;
+}
+
+
+/* HOVER */
+
+.edit-modal .btn:hover {
+    opacity: 0.9;
+}
+
+
+/* ===== DASHBOARD GRID ===== */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+}
+
+
+/* ===== CARD ===== */
+
+.dashboard-card {
+    background: linear-gradient(145deg, #0b0f1a, #12182b);
+    border-radius: 16px;
+    padding: 22px;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* GLOW BORDER */
+
+.dashboard-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 1px;
+    background: linear-gradient(135deg, #28c76f, #7367f0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.6;
+}
+
+
+/* HOVER */
+
+.dashboard-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
+}
+
+
+/* ===== TITLE ===== */
+
+.dashboard-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #28c76f;
+    text-transform: capitalize;
+}
+
+
+/* ===== DESCRIPTION ===== */
+
+.dashboard-card p {
+    font-size: 14px;
+    color: #cfd3ff;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+
+/* ===== BUTTON GROUP ===== */
+
+.dashboard-card .btn-group {
+    display: flex;
+    gap: 12px;
+}
+
+
+/* ===== BUTTONS ===== */
+
+.dashboard-card .btn {
+    flex: 1;
+    padding: 9px 0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+
+/* EDIT */
+
+.dashboard-card .btn.secondary {
+    background: #28c76f;
+    color: #fff;
+}
+
+
+/* DELETE */
+
+.dashboard-card .btn.delete {
+    background: #ea5455;
+    color: #fff;
+}
+
+
+/* HOVER */
+
+.dashboard-card .btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+
+/* ===== GRID ===== */
+
+
+/* ===== USER DASHBOARD GRID ===== */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 👈 3 cards per row */
+    gap: 40px;
+    padding: 40px;
+}
+
+
+/* ===== CARD ===== */
+
+.dashboard-card {
+    background: linear-gradient(135deg, #0b0f1a, #111827);
+    border-radius: 22px;
+    padding: 36px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.6);
+}
+
+
+/* ===== TITLE ===== */
+
+.dashboard-card h3 {
+    color: #22c55e;
+    /* GREEN */
+    font-size: 26px;
+    margin-bottom: 12px;
+}
+
+
+/* ===== DESCRIPTION ===== */
+
+.dashboard-card p {
+    color: #d1d5db;
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+
+/* ===== VIEW BUTTON (GREEN) ===== */
+
+.btn.view {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: #ffffff;
+    border: none;
+    padding: 14px 26px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.btn.view:hover {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    transform: scale(1.05);
+}
+
+
+/* ===== NEWS DETAILS PAGE ===== */
+
+.news-details {
+    max-width: 900px;
+    margin: 80px auto;
+    background: linear-gradient(135deg, #0b0f1a, #111827);
+    padding: 50px;
+    border-radius: 26px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+
+/* TITLE */
+
+.news-details h2 {
+    color: #22c55e;
+    font-size: 36px;
+    margin-bottom: 16px;
+}
+
+
+/* DESCRIPTION */
+
+.news-details p {
+    color: #e5e7eb;
+    font-size: 20px;
+    line-height: 1.8;
+}
+
+
+/* BACK BUTTON */
+
+.news-details button {
+    margin-top: 30px;
+    background: #16a34a;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.news-details button:hover {
+    background: #15803d;
+}

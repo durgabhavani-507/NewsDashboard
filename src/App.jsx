@@ -12,6 +12,8 @@ import About from "./pages/About";
 import Login from "./pages/Login";
 import Contact from "./pages/Contact";
 import AdminDashboard from "./pages/AdminDashboard";
+import NewsDetails from "./pages/NewsDetails";
+
 import UserDashboard from "./pages/UserDashboard";
 
 function App() {
@@ -60,7 +62,7 @@ function App() {
 
           {/* DASHBOARD (PROTECTED) */}
           <Route
-            path="/admin"
+            path="/admin/*"
             element={
               role === "admin" ? (
                 <AdminDashboard />
@@ -69,7 +71,9 @@ function App() {
               )
             }
           />
-
+{/* 
+          <Route path="/admin/*" element={<AdminDashboard />} />
+<Route path="/user/*" element={<UserDashboard />} /> */}
           {/* <Route
             path="/user"
             element={
@@ -90,6 +94,8 @@ function App() {
     )
   }
 />
+{/* <Route path="view-news/:id" element={<NewsDetails newsList={newsList} />} /> */}
+
 
         </Routes>
       </main>
